@@ -51,14 +51,6 @@ class ProductosController extends BaseController{
       $aProductos = array();
       if( $oQueryProductos->num_rows > 0 ){
         while( $row = $oQueryProductos->fetch_object() ){
-
-          // Estado
-          $sEstado = '';
-          switch( $row->estado ){
-            case '1': $sEstado = 'Activo'; break;
-            case '2': $sEstado = 'Inactivo'; break;
-            default: $sEstado = 'Estado no asignado'; break;
-          }
           $aProductos[] = array(
             'id'          => $row->id,
             'nombre'      => $row->nombre,
@@ -71,14 +63,9 @@ class ProductosController extends BaseController{
         }
       }
 
-      // // Cierre de conexion y Respuesta
-      // $em->getConnection()->close();
       $aJson['data'] = $aProductos;
       $aJson['totalRows'] = $totalRegistros;
       $_SESSION['json'] = true;
-      // json_encode([
-      //   'totalRows' => $totalRegistros, 'data' => $aProductos
-      // ]);
 
     }else{
       $aJson['status'] = 0;
@@ -101,8 +88,14 @@ class ProductosController extends BaseController{
 
       if( !empty($aDataForm) ){
 
+        $aJson['status'] = 1;
+        $aJson['message'] = "";
+
+        var_dump( $aDataForm );exit();
+
         header("Content-Type: application/json");
         echo json_encode($aJson);
+        exit();
 
       }else{
 
