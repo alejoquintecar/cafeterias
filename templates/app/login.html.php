@@ -9,7 +9,7 @@
 
 <form class='ms-auto me-auto' action="/authenticate" method="post" autocomplete="off">
 
-  <img class="text-center" src="images/logo-acme.png" width="300">
+  <img class="text-center" src="images/Konecta.PNG" width="300">
   <label for="inputUserName">Usuario</label>
   <input type="text" class="form-control" id="username" name="username" value=""  autocomplete="username" required autofocus>
   <label for="inputPassword">Contraseña</label>

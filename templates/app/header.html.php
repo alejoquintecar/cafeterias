@@ -5,9 +5,9 @@
 <!-- ========== HEADER ========== -->
 <header class="header pe-0">
   <div class="header__container">
-    <a href="#" class="header__logo fs-4" style="color: #0B68B0;">Indutapa</a>
+    <a href="#" class="header__logo fs-4" style="color: #0B68B0;">Konecta Coffee</a>
     <a class="nav-link dropdown-toggle" id="image-user-dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <img src="{{ asset('assets/images/Novitek-min.png') }}" alt="" class="header__img">
+      <img src="{{ asset('assets/images/Konecta.PNG') }}" alt="" class="header__img">
     </a>
     <ul class="dropdown-menu">
       <li>
@@ -27,7 +27,7 @@
   <nav class="nav__container">
     <div>
       <a href="#" class="nav__link nav__logo mb-1">
-        <img class='nav__icon m-0' src="images/logo-acme.png" width="220">
+        <img class='nav__icon m-0' src="images/Konecta.PNG" width="220">
       </a>
       <div class="nav__list border-top p-1 bg-white rounded">
         <div class="nav__items">
