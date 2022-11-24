@@ -8,8 +8,7 @@ class ProductosService{
 
   /**
    * @param $oConexionDB objeto con laconeccion a base de datos
-   * @param $sUserName usuario diligenciado por el usuario
-   * @param $sPassword contrasenia diligenciada por el usuario
+   * @param $aParams Parametros para el guardado
   */
   public function setProducto( $oConexionDB, $aParams ){
 
@@ -21,11 +20,42 @@ class ProductosService{
     $sCategoria = $aParams['categoria'];
     $sReferencia = $aParams['referencia'];
 
-    $sQueryAuthenticate = "INSERT INTO productos( nombre, referencia, precio, peso, categoria, stock, fecha_creacion )VALUES(
+    $sQueryNewProducto = "INSERT INTO productos( nombre, referencia, precio, peso, categoria, stock, fecha_creacion )VALUES(
       '{$sNombre}', '{$sReferencia}', $nPrecio, $nPeso, '{$sCategoria}', $nStock, '{$sFecha}'
     )";
-    $bResult = $oConexionDB->executeQuery($sQueryAuthenticate);
+    $bResult = $oConexionDB->executeQuery($sQueryNewProducto);
     return $bResult;
+  }
+
+  /**
+   * @param $oConexionDB objeto con laconeccion a base de datos
+   * @param $sFiltros Filtros para buscar un producto
+  */
+  public function getProductos( $oConexionDB, $sFiltros ){
+    
+    $sFecha = date('Y-m-d');
+    $sFiltros = ( !empty($sFiltros) ) ? 'AND '.$sFiltros:"";
+    $sQuerySearchProductos = "SELECT pd.id, pd.nombre, pd.referencia, pd.precio, pd.peso, pd.categoria, pd.stock
+    FROM productos as pd
+    WHERE 1 = 1 $sFiltros";
+
+    $oResult = $oConexionDB->executeQuery($sQuerySearchProductos);
+    $aProductos = array();
+    if( $oResult->num_rows == 1 ){
+      $bReturn = true;
+      while( $row = $oResult->fetch_object() ){
+        $aProductos[] = array(
+          'id'          => $row->id,
+          'nombre'      => $row->nombre,
+          'referencia'  => $row->referencia,
+          'precio'      => $row->precio,
+          'peso'        => $row->peso,
+          'categoria'   => $row->categoria,
+          'stock'       => $row->stock
+        );
+      }
+    }
+    return $aProductos;
   }
 
 }

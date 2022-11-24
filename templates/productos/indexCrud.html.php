@@ -18,32 +18,32 @@
     <!-- Producto -->
     <div class="col-6 col-md-4">
       <label for="producto" class="form-label fw-bold">Producto:</label>
-      <input type="text" class="form-control" id="producto" name="producto[producto]" required>
+      <input type="text" class="form-control" id="producto" name="producto[producto]" required value="<?php if( isset($appVar['producto']) ) echo $appVar['producto']['nombre']; ?>">
     </div>
     <!-- Referencia -->
     <div class="col-6 col-md-4">
       <label for="referencia" class="form-label fw-bold">Referencia:</label>
-      <input type="text" class="form-control" id="referencia" name="producto[referencia]" required>
+      <input type="text" class="form-control" id="referencia" name="producto[referencia]" required value="<?php if( isset($appVar['producto']) ) echo $appVar['producto']['referencia']; ?>">
     </div>
     <!-- Precio -->
     <div class="col-6 col-md-4">
       <label for="precio" class="form-label fw-bold">Precio:</label>
-      <input type="number" class="form-control" id="precio" name="producto[precio]" required>
+      <input type="number" class="form-control" id="precio" name="producto[precio]" required value="<?php if( isset($appVar['producto']) ) echo $appVar['producto']['precio']; ?>">
     </div>
     <!-- Peso -->
     <div class="col-6 col-md-4">
       <label for="peso" class="form-label fw-bold">Peso:</label>
-      <input type="number" class="form-control" id="peso" name="producto[peso]" required>
+      <input type="number" class="form-control" id="peso" name="producto[peso]" required value="<?php if( isset($appVar['producto']) ) echo $appVar['producto']['peso']; ?>">
     </div>
     <!-- Categoria -->
     <div class="col-6 col-md-4">
       <label for="categoria" class="form-label fw-bold">Categoría:</label>
-      <input type="text" class="form-control" id="categoria" name="producto[categoria]" required>
+      <input type="text" class="form-control" id="categoria" name="producto[categoria]" required value="<?php if( isset($appVar['producto']) ) echo $appVar['producto']['categoria']; ?>">
     </div>
     <!-- Stock -->
     <div class="col-6 col-md-4">
       <label for="stock" class="form-label fw-bold">Stock:</label>
-      <input type="number" class="form-control" id="stock" name="producto[stock]" required>
+      <input type="number" class="form-control" id="stock" name="producto[stock]" required value="<?php if( isset($appVar['producto']) ) echo $appVar['producto']['stock']; ?>">
     </div>
   </div>
 

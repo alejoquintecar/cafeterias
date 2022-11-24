@@ -53,7 +53,7 @@ $(function(){
     {'width': 150, 'data': 'nombres',   'title': 'Nombres' },
     {'width': 150, 'data': 'apellidos', 'title': 'Apellidos' },
     {'width': 120, 'data': 'user_name', 'title': 'Nombre  Usuario' },
-    {'width': 120, 'data': 'rol',       'title': 'Rol' },
+    {'width': 120, 'data': 'roles',       'title': 'Rol' },
     {'width': 100, 'data': 'estado',    'title': 'Estado' },
   ];
 

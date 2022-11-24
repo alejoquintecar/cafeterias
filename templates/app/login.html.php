@@ -24,3 +24,7 @@
   </button>
 
 </form>
+
+<script>
+  $("#loading").hide();
+</script>

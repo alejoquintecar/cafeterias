@@ -56,7 +56,7 @@ $(function(){
     {'width': 120, 'data': 'peso',           'title': 'Peso' },
     {'width': 100, 'data': 'categoria',      'title': 'Categoría' },
     {'width': 100, 'data': 'stock',          'title': 'Stock' },
-    {'width': 100, 'data': 'fecha_creación', 'title': 'Fecha Creación' },
+    {'width': 100, 'data': 'fecha_creacion', 'title': 'Fecha Creación' },
   ];
 
   oMyDatatable = {
@@ -91,38 +91,43 @@ $(function(){
     // });
   });
 
-  // $('#my-datatable').on('click', '#my-datatable-editar-registro', function(){
-
-  //   let aRowsSelected = oMyDatatable.getRowsSelect();
-  //   if( aRowsSelected[0] ){
-  //     $('#loader').show();
-  //     $('.modal-dialog').removeClass('modal-xl');
-  //     $('.modal-dialog').addClass('modal-lg');
-  //     // Titulo Modal
-  //     $('#tituloModalGlobal').html('Editar Usuario Diario:&nbsp;<i class="fas fa-user"></i>&nbsp;' );
-  //     $('#contenidoModalGlobal').empty().load(aRoutesUrls.indexEdit, {registroId: aRowsSelected[0].id}, function (){
-  //       $('#modalGlobal').modal({backdrop: true,keyboard: false});
-  //       $('#modalGlobal').modal('show');
-  //       oMdlCrud.init();
-  //       $('#loader').hide();
-  //     });
-  //   }else{
-  //     Swal.fire({
-  //       icon: 'info',
-  //       toast: true,
-  //       timer: 4500,
-  //       position: 'top-end',
-  //       text: 'Por favor seleccione una fila de la tabla.',
-  //       showConfirmButton: false,
-  //       showCloseButton: true,
-  //       timerProgressBar: true,
-  //       didOpen: (toast) => {
-  //         toast.addEventListener('mouseenter', Swal.stopTimer),
-  //         toast.addEventListener('mouseleave', Swal.resumeTimer)
-  //       }
-  //     });
-  //   }
-  // });
+  $('#my-datatable').on('click', '#my-datatable-editar-registro', function(){
+    
+    let aRowsSelected = oMyDatatable.rows('.selected').data();    
+    if( aRowsSelected[0] ){
+      document.cookie = "registroId="+aRowsSelected[0].id;
+      window.location.href = "http://transportes-acme.com/productos-edit";
+    }else{
+      Swal.fire({
+        icon: 'info',
+        toast: true,
+        timer: 4500,
+        position: 'top-end',
+        text: 'Por favor seleccione una fila de la tabla.',
+        showConfirmButton: false,
+        showCloseButton: true,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer),
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      });
+    }
+    //     $('#loader').show();
+    //     $('.modal-dialog').removeClass('modal-xl');
+    //     $('.modal-dialog').addClass('modal-lg');
+    //     // Titulo Modal
+    //     $('#tituloModalGlobal').html('Editar Usuario Diario:&nbsp;<i class="fas fa-user"></i>&nbsp;' );
+    //     $('#contenidoModalGlobal').empty().load(aRoutesUrls.indexEdit, {registroId: aRowsSelected[0].id}, function (){
+    //       $('#modalGlobal').modal({backdrop: true,keyboard: false});
+    //       $('#modalGlobal').modal('show');
+    //       oMdlCrud.init();
+    //       $('#loader').hide();
+    //     });
+    //   }else{
+    //     
+    //   }
+  });
 
   // // Eliminar registro
   // $('#my-datatable').on('click', '#my-datatable-eliminar-registro', function(){

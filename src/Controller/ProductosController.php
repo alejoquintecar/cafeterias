@@ -60,7 +60,8 @@ class ProductosController extends BaseController{
             'precio'      => $row->precio,
             'peso'        => $row->peso,
             'categoria'   => $row->categoria,
-            'stock'       => $row->stock
+            'stock'       => $row->stock,
+            'fecha_creacion'  => $row->fecha_creacion
           );
         }
       }
@@ -118,63 +119,51 @@ class ProductosController extends BaseController{
     }
   }
 
-  // --- --- --- Definicion de columnas --- --- ---
-  private function indexDfColumnsButtons( $aPermisos = array() ){
+  public function indexEdit(){
 
-    $aDfColumns = [ 'columns' => [
-      [ 'width' => 100,
-        'data' => 'nombres',       'title' => 'Nombres'
-      ],
-      [ 'width' => 100,
-        'data' => 'apellidos',     'title' => 'Apellidos'
-      ],
-      [ 'width' => 100,
-        'data' => 'documento',     'title' => 'Núm. Documento'
-      ],
-      [ 'width' => 70,
-        'data' => 'username',      'title' => 'Nombre Usuario '
-      ],
-      [ 'width' => 70,
-        'data' => 'tipoPermisos',  'title' => 'Tipo permisos'
-      ],
-      [ 'width' => 70, 'visible' => (empty($aPermisos)) ? false : true,
-        'data' => 'nTipoPermisos',  'title' => 'Permisos',
-        'cellRender' => [
-          'render'  => 'buttons',
-          'buttons' => (empty($aPermisos)) ? $aPermisos : $this->oMenuPermisos->getButtons($aPermisos, 2)
-        ]
-      ],
-      [ 'width' => 70,
-        'data' => 'estado',         'title' => 'Estado'
-      ],
-    ]];
+    $aJson = array();
 
-    $aDfButtons = [
-      'crear' => array(
-        'id' => 'crear-registro',
-        'text' => 'Crear',
-        'title' => 'Crear Registro',
-        'icons' => array('fas fa-user-plus'),
-        'class' => array('btn-outline-success')
-      ),
-      'editar' => array(
-        'id' => 'editar-registro',
-        'text' => 'Editar',
-        'title' => 'Crear Registro',
-        'icons' => array('fas fa-user-edit'),
-        'class' => array('btn-outline-warning')
-      ),
-      'eliminar' => array(
-        'id' => 'editar-registro',
-        'text' => 'Editar',
-        'title' => 'Crear Registro',
-        'icons' => array('fas fa-user-minus'),
-        'class' => array('btn-outline-danger')
-      )
-    ];
+    if( $_SERVER['REQUEST_SCHEME'] == 'http' ){
 
-    return [ 'columns' => $aDfColumns, 'buttons' => $aDfButtons ];
+      $oProductosService = new ProductosService();
+      $aDataForm = (isset($_REQUEST['producto'])) ? $_REQUEST['producto'] : null;
+
+      if( !empty($aDataForm) ){
+
+        
+
+        $aJson['status'] = 1;
+        $aJson['message'] = "";
+
+        $bResult = $oProductosService->setProducto( $this->oConexionDB, $aDataForm );
+        if( $bResult ){
+          $aJson['status'] = 1;
+          $aJson['message'] = "Producto actualizado.";
+        }else{
+          $aJson['status'] = 0;
+          $aJson['message'] = "El producto no pudo ser actualizado.";
+        }
+
+        header("Content-Type: application/json");
+        echo json_encode($aJson);
+        exit();
+
+      }else{
+
+        $sIdProducto = $_COOKIE['registroId'];
+
+        $aProducto = $oProductosService->getProductos( $this->oConexionDB, "pd.id = ".$sIdProducto );
+
+        $this->render('productos/indexCrud.html.php', array(
+          'action' => 'edit',
+          'producto' => $aProducto[0]
+        ));
+      }
+
+    }
   }
+
+  
 
 }
 
