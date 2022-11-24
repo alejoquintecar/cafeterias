@@ -7,10 +7,10 @@
 ```bash
 Listen 80
 <VirtualHost *:80>
-  ServerName transportes-acme.com
-  ServerAlias transportes-acme.com
-  DocumentRoot "${INSTALL_DIR}/www/transportes-acme/public"
-  <Directory "${INSTALL_DIR}/www/transportes-acme/public">
+  ServerName cafeterias-knta.com
+  ServerAlias cafeterias-knta.com
+  DocumentRoot "${INSTALL_DIR}/www/cafeterias-knta.com/public"
+  <Directory "${INSTALL_DIR}/www/cafeterias-knta.com/public">
     Options Indexes FollowSymLinks
     AllowOverride All
     Require all granted
