@@ -2,7 +2,7 @@
 
 ## Instalación - Versión 0.3
 
-1) Ajustar el archivo (httpd.conf) para hacer un hosvirtual simular un servidor web localmente.
+1) Ajustar el archivo (httpd.conf) para simular un hosvirtual.
 
 ```bash
 Listen 80
@@ -11,8 +11,9 @@ Listen 80
   ServerAlias transportes-acme.com
   DocumentRoot "${INSTALL_DIR}/www/transportes-acme/public"
   <Directory "${INSTALL_DIR}/www/transportes-acme/public">
+    Options Indexes FollowSymLinks
     AllowOverride All
-    #Require local
+    Require all granted
   </Directory>
 </VirtualHost>
 ```
