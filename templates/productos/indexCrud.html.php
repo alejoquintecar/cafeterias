@@ -55,6 +55,7 @@
       <button type="button" class="btn btn-outline-warning">
         Cancelar <i class="far fa-times-circle"></i>
       </button>
+      <input type="hidden" name="producto[id]" value="<?php if( isset($appVar['producto']) ) echo $appVar['producto']['id']; ?>">
     </div>
   </div>
 

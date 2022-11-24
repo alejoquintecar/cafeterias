@@ -130,12 +130,11 @@ class ProductosController extends BaseController{
 
       if( !empty($aDataForm) ){
 
-        
-
         $aJson['status'] = 1;
         $aJson['message'] = "";
 
-        $bResult = $oProductosService->setProducto( $this->oConexionDB, $aDataForm );
+        $bResult = $oProductosService->putProducto( $this->oConexionDB, $aDataForm );
+
         if( $bResult ){
           $aJson['status'] = 1;
           $aJson['message'] = "Producto actualizado.";
