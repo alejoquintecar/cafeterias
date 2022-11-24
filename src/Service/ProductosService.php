@@ -20,8 +20,8 @@ class ProductosService{
     $sCategoria = $aParams['categoria'];
     $sReferencia = $aParams['referencia'];
 
-    $sQueryNewProducto = "INSERT INTO productos( nombre, referencia, precio, peso, categoria, stock, fecha_creacion )VALUES(
-      '{$sNombre}', '{$sReferencia}', $nPrecio, $nPeso, '{$sCategoria}', $nStock, '{$sFecha}'
+    $sQueryNewProducto = "INSERT INTO productos( nombre, referencia, precio, peso, categoria, stock, fecha_creacion, estado )VALUES(
+      '{$sNombre}', '{$sReferencia}', $nPrecio, $nPeso, '{$sCategoria}', $nStock, '{$sFecha}', 1
     )";
     $bResult = $oConexionDB->executeQuery($sQueryNewProducto);
     return $bResult;
@@ -73,6 +73,13 @@ class ProductosService{
       SET nombre = '{$sNombre}', referencia = '{$sReferencia}', precio = $nPrecio,
       peso = $nPeso, categoria = '{$sCategoria}', stock = $nStock
     WHERE id = $nId";
+    $bResult = $oConexionDB->executeQuery($sQueryEditProducto);
+    return $bResult;
+  }
+
+  public function deleteProducto( $oConexionDB, $nProductoId ){
+
+    $sQueryEditProducto = "UPDATE productos SET estado = 0 WHERE id = $nProductoId";
     $bResult = $oConexionDB->executeQuery($sQueryEditProducto);
     return $bResult;
   }

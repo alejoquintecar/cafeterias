@@ -47,6 +47,7 @@ class ProductosController extends BaseController{
       $oQueryProductos = $this->oConexionDB->executeQuery("SELECT pd.id, pd.nombre, pd.referencia, pd.precio, pd.peso, pd.categoria,
         pd.stock, pd.fecha_creacion
         FROM productos pd
+        WHERE pd.estado = 1
       ");
 
       // --- --- --- Lógica --- --- --- //
@@ -82,20 +83,15 @@ class ProductosController extends BaseController{
   public function indexNew(){
 
     $aJson = array();
-
     if( $_SERVER['REQUEST_SCHEME'] == 'http' ){
 
       $aDataForm = (isset($_REQUEST['producto'])) ? $_REQUEST['producto'] : null;
-
-      // var_dump( $aDataForm );exit();
-
       if( !empty($aDataForm) ){
-
-        $oProductosService = new ProductosService();
 
         $aJson['status'] = 1;
         $aJson['message'] = "";
 
+        $oProductosService = new ProductosService();
         $bResult = $oProductosService->setProducto( $this->oConexionDB, $aDataForm );
         if( $bResult ){
           $aJson['status'] = 1;
@@ -158,7 +154,32 @@ class ProductosController extends BaseController{
           'producto' => $aProducto[0]
         ));
       }
+    }
+  }
 
+  public function indexEliminar(){
+    
+    $aJson = array();
+    if( $_SERVER['REQUEST_SCHEME'] == 'http' ){
+
+      $aJson['status'] = 1;
+      $aJson['message'] = "";
+      $oProductosService = new ProductosService();
+
+      $nProductoId = intval($_REQUEST['registroId']);
+      $bResult = $oProductosService->deleteProducto( $this->oConexionDB, $nProductoId );
+
+      if( $bResult ){
+        $aJson['status'] = 1;
+        $aJson['message'] = "Producto eliminado.";
+      }else{
+        $aJson['status'] = 0;
+        $aJson['message'] = "El producto no pudo ser eliminado.";
+      }
+
+      header("Content-Type: application/json");
+      echo json_encode($aJson);
+      exit();
     }
   }
 

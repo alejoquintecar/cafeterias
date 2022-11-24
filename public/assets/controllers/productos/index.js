@@ -41,7 +41,7 @@ $(function(){
       'class': ''
     },
     'eliminar': {
-      'id'   : 'crear-registro',
+      'id'   : 'eliminar-registro',
       'text' : 'Eliminar',
       'title': 'Crear Registro',
       'icons': ['far fa-trash-alt'],
@@ -113,93 +113,78 @@ $(function(){
         }
       });
     }
-    //     $('#loader').show();
-    //     $('.modal-dialog').removeClass('modal-xl');
-    //     $('.modal-dialog').addClass('modal-lg');
-    //     // Titulo Modal
-    //     $('#tituloModalGlobal').html('Editar Usuario Diario:&nbsp;<i class="fas fa-user"></i>&nbsp;' );
-    //     $('#contenidoModalGlobal').empty().load(aRoutesUrls.indexEdit, {registroId: aRowsSelected[0].id}, function (){
-    //       $('#modalGlobal').modal({backdrop: true,keyboard: false});
-    //       $('#modalGlobal').modal('show');
-    //       oMdlCrud.init();
-    //       $('#loader').hide();
-    //     });
-    //   }else{
-    //     
-    //   }
   });
 
-  // // Eliminar registro
-  // $('#my-datatable').on('click', '#my-datatable-eliminar-registro', function(){
+  // Eliminar registro
+  $('#my-datatable').on('click', '#my-datatable-eliminar-registro', function(){
 
-  //   let aRowsSelected = oMyDatatable.getRowsSelect();
-  //   if( aRowsSelected[0] ){
-
-  //     aRowsSelected = aRowsSelected[0],
-
-  //     Swal.fire({
-  //       icon: 'warning',
-  //       title: "Desea eliminar este usuario?",
-  //       html: `<b>Usuario:</b> ${aRowsSelected.username}<br><b>Nombre:</b> ${aRowsSelected.nombres}`,
-  //       confirmButtonText: 'Si',
-  //       cancelButtonText: 'No',
-  //       showCancelButton: true,
-  //       cancelButtonColor: '#d33',
-  //       confirmButtonColor: '#198754',
-  //       position: 'center',
-  //       showConfirmButton: true,
-  //       showCloseButton: true,
-  //       showCancelButton: true
-  //     }).then((result) => {
-  //       if( result.isConfirmed ){
-  //         $.ajax({
-  //           url: aRoutesUrls.indexDelete,
-  //           data: { registroId: aRowsSelected.id },
-  //           type: 'post',
-  //           beforeSend: function(){
-  //             $('#loading').show();
-  //           },
-  //           success: function(data){
-  //             $("#loading").hide();
-  //             Swal.fire({
-  //               icon: ( data.status == 1 ) ? 'success' : 'info',
-  //               title: data.message,
-  //               toast: true,
-  //               timer: 6000,
-  //               position: 'top-end',
-  //               showConfirmButton: false,
-  //               showCloseButton: true,
-  //               timerProgressBar: true,
-  //               didOpen: (toast) => {
-  //                 toast.addEventListener('mouseenter', Swal.stopTimer),
-  //                 toast.addEventListener('mouseleave', Swal.resumeTimer)
-  //               }
-  //             });
-  //             if( data.status == 1 || data.status == 2 ) location.reload();
-  //           },
-  //           error: function(data){
-  //             $('#loading').hide();
-  //           }
-  //         });
-  //       }
-  //     });
-  //   }else{
-  //     Swal.fire({
-  //       icon: 'info',
-  //       toast: true,
-  //       timer: 4500,
-  //       position: 'top-end',
-  //       text: 'Por favor seleccione una fila de la tabla.',
-  //       showConfirmButton: false,
-  //       showCloseButton: true,
-  //       timerProgressBar: true,
-  //       didOpen: (toast) => {
-  //         toast.addEventListener('mouseenter', Swal.stopTimer),
-  //         toast.addEventListener('mouseleave', Swal.resumeTimer)
-  //       }
-  //     });
-  //   }
-  // });
+    let aRowsSelected = oMyDatatable.rows('.selected').data();    
+    if( aRowsSelected[0] ){
+      aRowsSelected = aRowsSelected[0];
+      console.log( aRowsSelected );
+      Swal.fire({
+        icon: 'warning',
+        title: "Desea eliminar este producto?",
+        html: `<b>Nombre:</b> ${aRowsSelected.nombre}<br><b>Referencia:</b> ${aRowsSelected.referencia}`,
+        confirmButtonText: 'Si',
+        cancelButtonText: 'No',
+        showCancelButton: true,
+        cancelButtonColor: '#d33',
+        confirmButtonColor: '#198754',
+        position: 'center',
+        showConfirmButton: true,
+        showCloseButton: true,
+        showCancelButton: true
+      }).then((result) => {
+        if( result.isConfirmed ){
+          $.ajax({
+            url: aRoutesUrls.indexEliminar,
+            data: { registroId: aRowsSelected.id },
+            type: 'post',
+            beforeSend: function(){
+              $('#loading').show();
+            },
+            success: function(data){
+              $("#loading").hide();
+              Swal.fire({
+                icon: ( data.status == 1 ) ? 'success' : 'info',
+                title: data.message,
+                toast: true,
+                timer: 6000,
+                position: 'top-end',
+                showConfirmButton: false,
+                showCloseButton: true,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer),
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              });
+              if( data.status == 1 || data.status == 2 ) location.reload();
+            },
+            error: function(data){
+              $('#loading').hide();
+            }
+          });
+        }
+      });
+    }else{
+      Swal.fire({
+        icon: 'info',
+        toast: true,
+        timer: 4500,
+        position: 'top-end',
+        text: 'Por favor seleccione una fila de la tabla.',
+        showConfirmButton: false,
+        showCloseButton: true,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer),
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      });
+    }
+  });
 
   // $('#my-datatable').on('click', '#my-datatable-permisos-registro', function(){
 
