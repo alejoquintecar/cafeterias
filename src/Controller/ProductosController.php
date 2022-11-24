@@ -4,6 +4,8 @@
 // Core
 require_once __DIR__."/../../core/ConexionDB.php";
 require_once __DIR__."/../../core/BaseController.php";
+// Srvices
+require_once __DIR__."/../../src/Service/ProductosService.php";
 
 class ProductosController extends BaseController{
 
@@ -88,10 +90,19 @@ class ProductosController extends BaseController{
 
       if( !empty($aDataForm) ){
 
+        $oProductosService = new ProductosService();
+
         $aJson['status'] = 1;
         $aJson['message'] = "";
 
-        var_dump( $aDataForm );exit();
+        $bResult = $oProductosService->setProducto( $this->oConexionDB, $aDataForm );
+        if( $bResult ){
+          $aJson['status'] = 1;
+          $aJson['message'] = "Producto agregado.";
+        }else{
+          $aJson['status'] = 0;
+          $aJson['message'] = "El producto no pudo ser agregado.";
+        }
 
         header("Content-Type: application/json");
         echo json_encode($aJson);

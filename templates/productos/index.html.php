@@ -10,6 +10,7 @@
 
 <!-- --- --- --- Js --- --- --- -->
 <script>
+  $("#loading").hide();
   var aRoutesUrls = {};
   aRoutesUrls.indexJson = 'productos-json';
   aRoutesUrls.indexNew = 'productos-new';

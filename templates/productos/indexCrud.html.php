@@ -67,31 +67,32 @@
   // aRoutesUrls.indexNew = 'productos-new';
   // aRoutesUrls.indexEdit = 'productos-edit';
 
+  $("#loading").hide();
   $('#form-crud').submit(function (e){
     $.ajax({
       url: aRoutesUrls.indexCrud,
       data: $('#form-crud').serialize(), // '&' + $.param({}),
       type: 'post',
       beforeSend: function(){
-        // $('#loading').show();
+        $('#loading').show();
       },
       success: function(data){
-        // $("#loading").hide();
-        // Swal.fire({
-        //   icon: ( data.status == 1 ) ? 'success' : 'warning',
-        //   title: data.message,
-        //   toast: true,
-        //   timer: 4500,
-        //   position: 'top-end',
-        //   showConfirmButton: false,
-        //   showCloseButton: true,
-        //   timerProgressBar: true,
-        //   didOpen: (toast) => {
-        //     toast.addEventListener('mouseenter', Swal.stopTimer),
-        //     toast.addEventListener('mouseleave', Swal.resumeTimer)
-        //   }
-        // });
-        // if( data.status == 1 || data.status == 2 ) location.reload();
+        $("#loading").hide();
+        Swal.fire({
+          icon: ( data.status == 1 ) ? 'success' : 'warning',
+          title: data.message,
+          toast: true,
+          timer: 4500,
+          position: 'top-end',
+          showConfirmButton: false,
+          showCloseButton: true,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer),
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        });
+        if( data.status == 1 ) window.location.href = "http://transportes-acme.com/productos";
       },
       error: function(data){
         // $('#loading').hide();
