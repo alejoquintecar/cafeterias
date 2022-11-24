@@ -7,7 +7,7 @@
   <div class="header__container">
     <a href="#" class="header__logo fs-4" style="color: #0B68B0;">Konecta Coffee</a>
     <a class="nav-link dropdown-toggle" id="image-user-dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <img src="{{ asset('assets/images/Konecta.PNG') }}" alt="" class="header__img">
+      <img src="images/konecta-icon.PNG" width="60">
     </a>
     <ul class="dropdown-menu">
       <li>

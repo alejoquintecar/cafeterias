@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.1/b-2.3.3/fh-3.3.1/kt-2.8.0/sc-2.0.7/sb-1.4.0/sp-2.1.0/sl-1.5.0/datatables.min.css"/>
 
-<table id="my-datatable" class="display my-datatable bg-white" style="width:100%">
+<table id="my-datatable" class="display my-datatable bg-white table-bordered" style="width:100%">
   <tfoot>
     <tr>
       <th class="bg-light" id="my-datatable-tfoot-buttons" colspan="5"></th>

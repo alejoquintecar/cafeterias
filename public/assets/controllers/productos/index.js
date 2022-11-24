@@ -186,6 +186,12 @@ $(function(){
     }
   });
 
+  $('#my-datatable').on('click', '#my-datatable-refresh', function(){
+    location.reload();
+  });
+
+  
+
   // $('#my-datatable').on('click', '#my-datatable-permisos-registro', function(){
 
   //   let oBtn = $(this);
