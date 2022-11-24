@@ -17,3 +17,8 @@ Listen 80
   </Directory>
 </VirtualHost>
 ```
+
+1) Ajustar el archivo (C:\Windows\System32\drivers\etc\hosts) para agregar la siguiente Linea
+```bash
+127.0.0.1 cafeterias-knta
+```
