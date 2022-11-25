@@ -13,6 +13,12 @@ $oRouter->add('/productos-json',      'ProductosController@indexJson');
 $oRouter->add('/productos-new',       'ProductosController@indexNew');
 $oRouter->add('/productos-edit',      'ProductosController@indexEdit');
 $oRouter->add('/productos-eliminar',  'ProductosController@indexEliminar');
+// --- Productos
+$oRouter->add('/productos-vender',          'ProductosVenderController@index');
+$oRouter->add('/productos-vender-json',     'ProductosVenderController@indexJson');
+$oRouter->add('/productos-vender-new',      'ProductosVenderController@indexNew');
+$oRouter->add('/productos-vender-edit',     'ProductosVenderController@indexEdit');
+$oRouter->add('/productos-vender-eliminar', 'ProductosVenderController@indexEliminar');
 // --- Login
 $oRouter->add('/',      'LoginController@index');
 $oRouter->add('/login', 'LoginController@index');
